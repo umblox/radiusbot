@@ -1,18 +1,15 @@
 import mysql.connector
 from telegram import Update
-from telegram.ext import CallbackContext
-from telegram.ext import CommandHandler
-
-# ID Admin
-ADMIN_ID = 2123457759  # Ganti dengan ID Admin Anda
+from telegram.ext import CallbackContext, CommandHandler
+import config  # Impor konfigurasi dari config.py
 
 # Fungsi untuk koneksi ke database
 def get_db_connection():
     return mysql.connector.connect(
-        user='radius',
-        password='radius',
-        host='127.0.0.1',
-        database='radius'
+        user=config.DB_CONFIG['user'],
+        password=config.DB_CONFIG['password'],
+        host=config.DB_CONFIG['host'],
+        database=config.DB_CONFIG['database']
     )
 
 # Fungsi untuk menangani command /start
@@ -43,7 +40,7 @@ async def start(update: Update, context: CallbackContext):
 
         # Kirim notifikasi ke admin
         admin_message = f"Pengguna baru mendaftar:\n\nID Pengguna: {user_id}\nUsername: @{username}"
-        await context.bot.send_message(chat_id=ADMIN_ID, text=admin_message)
+        await context.bot.send_message(chat_id=config.ADMIN_ID, text=admin_message)
 
     # Sambutan untuk pengguna baru dan daftar perintah
     welcome_message = (
@@ -66,7 +63,8 @@ async def start(update: Update, context: CallbackContext):
 def main():
     from telegram.ext import Application
 
-    application = Application.builder().token("7530717438:AAFDpkb15BzqvjJx8-jNDT-Kg6JS0uhgbuo").build()
+    # Gunakan BOT_TOKEN dari config.py
+    application = Application.builder().token(config.BOT_TOKEN).build()
 
     start_handler = CommandHandler("start", start)
     application.add_handler(start_handler)
