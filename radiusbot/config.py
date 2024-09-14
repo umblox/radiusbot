@@ -15,10 +15,10 @@ DB_CONFIG = {
 }
 
 # Token Bot
-BOT_TOKEN = '7530717438:AAFDpkb15BzqvjJx8-jNDT-Kg6JS0uhgbuo'
+BOT_TOKEN = '753071xxx:tokenandaxxx'
 
 # Admin ID
-ADMIN_ID = 2123457759
+ADMIN_ID = 212345xxx
 
 # Prefix voucher berdasarkan nama plan
 VOUCHER_PREFIX = {
