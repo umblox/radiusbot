@@ -11,3 +11,8 @@ Apa Yang Harus Di Lakukan :
 7. Sebarkan bot ke pelanggan
 8. Project ini di install di folder /www/ Jika mengubah folder install, harus ubah isi radiusbot di /etc/init.d/ tadi
 9. Masuk ke system>startup untuk enable dan start radiusbot
+10. Setting bot anda dan buat command jalan pintas, copy teks di bawah ke pengaturan bot command di botFather
+saldo - Untuk melihat sisa saldo anda
+beli - Untuk membeli paket voucher
+topup - Untuk melakukan topup
+profile - Untuk melihat profile anda
