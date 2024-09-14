@@ -1,0 +1,13 @@
+Dashboard Pelanggan Billing Freeradius Telegram UI
+
+Apa Yang Harus Di Lakukan :
+
+1. Setelah berhasil git clone, setting database, prefix voucher, serta bot token dan chat id di config.py
+2. Import database radiusbot.sql ke database radius, jika pernah menginstall radiusbilling dari saya, tahap ini tidak perlu di lakukan
+3. Baca radiusbot.baca lalu lakukan perintah di dalam nya dan jangan lupa rename menjadi radiusbot
+4. Setelah bot berjalan, lakukan pendaftaran pada bot dengan akun telegram yang akan di jadikan admin dengan klik start pada bot
+5. Buka adminer dan masuk ke database radius>table users>kolom is_admin> ubah dari 0 menjadi 1 untuk akun admin nya
+6. Wajib membuat nama plan (Billing>Plans) sama persis dengan nama profile (Management>Profiles)
+7. Sebarkan bot ke pelanggan
+8. Project ini di install di folder /www/ Jika mengubah folder install, harus ubah isi radiusbot di /etc/init.d/ tadi
+9. Masuk ke system>startup untuk enable dan start radiusbot

@@ -1,0 +1,37 @@
+#!/bin/sh /etc/rc.common
+
+# Petunjuk:
+# 1. Letakkan file ini di folder /etc/init.d/ dengan nama "radiusbot"
+# 2. Berikan hak akses eksekusi pada file ini dengan perintah:
+#    chmod +x /etc/init.d/radiusbot
+# 3. Untuk memulai bot, jalankan perintah:
+#    /etc/init.d/radiusbot start
+# 4. Untuk menghentikan bot, jalankan perintah:
+#    /etc/init.d/radiusbot stop
+
+START=99
+STOP=10
+
+start() {
+    if [ -f /var/run/radiusbot.pid ] && kill -0 $(cat /var/run/radiusbot.pid) 2>/dev/null; then
+        echo "Bot is already running with PID $(cat /var/run/radiusbot.pid)"
+        return 1
+    fi
+
+    echo "Starting bot..."
+    nohup /usr/bin/python3 /www/radiusbot/bot.py > /var/log/radiusbot.log 2>&1 &
+    BOT_PID=$!
+    echo $BOT_PID > /var/run/radiusbot.pid
+    echo "Bot started with PID $BOT_PID"
+}
+
+stop() {
+    echo "Stopping bot..."
+    if [ -f /var/run/radiusbot.pid ]; then
+        kill -9 $(cat /var/run/radiusbot.pid)
+        rm /var/run/radiusbot.pid
+        echo "Bot stopped."
+    else
+        echo "PID file not found."
+    fi
+}
