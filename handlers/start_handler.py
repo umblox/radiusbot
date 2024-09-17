@@ -16,7 +16,7 @@ def get_db_connection():
 async def start(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
     username = update.message.from_user.username
-    
+
     # Cek apakah username ada
     if not username:
         await update.message.reply_text(
@@ -34,8 +34,10 @@ async def start(update: Update, context: CallbackContext):
 
     if not existing_user:
         # Jika pengguna baru, masukkan ke dalam database
-        cursor.execute("INSERT INTO users (telegram_id, username, balance) VALUES (%s, %s, %s)",
-                       (user_id, username, 0))
+        cursor.execute(
+            "INSERT INTO users (telegram_id, username, password, balance) VALUES (%s, %s, %s, %s)",
+            (user_id, username, '', 0)
+        )
         connection.commit()
 
         # Kirim notifikasi ke admin
