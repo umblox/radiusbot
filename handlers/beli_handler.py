@@ -155,7 +155,7 @@ async def beli_callback(update, context: CallbackContext):
 
     # Notifikasi admin tentang pembelian voucher
     admin_message = (
-        f"Pengguna dengan username Telegram {telegram_username} telah berhasil membeli voucher {plan['planName']}.\n"
+        f"Pengguna dengan username Telegram @{telegram_username} telah berhasil membeli voucher {plan['planName']} melalui radiusbot.\n"
         f"Kode voucher: {voucher_code}\n"
         f"Sisa saldo pengguna: {new_balance:.2f}"
     )
